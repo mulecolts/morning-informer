@@ -50,7 +50,7 @@ public class EmailInteractionChannel implements InteractionChannel {
 	}
 
 	private void initializeEmailConnection() {
-		emailConnection = ConexionFactory.crear(configuration.getAccountData());
+		emailConnection = ConexionFactory.crear(configuration.getAccountData().getInside());
 	}
 
 	private void initializeEmailBuilder() {

@@ -1,14 +1,13 @@
 package ar.alme.morninformer.mail;
 
-import ar.mil.cideso.correo.configuracion.ServidorCorreo;
 
 public class EmailInteractionChannelConfiguration {
 
 	private String displayableName;
 	private String newsSubject = "(no subject)";
-	private final ServidorCorreo accountData;
+	private final EmailServer accountData;
 
-	public EmailInteractionChannelConfiguration(ServidorCorreo accountData,
+	public EmailInteractionChannelConfiguration(EmailServer accountData,
 			String newsSubject) {
 		this.accountData = accountData;
 		this.newsSubject = newsSubject;
@@ -23,11 +22,11 @@ public class EmailInteractionChannelConfiguration {
 	}
 
 	public int getSMTPPort() {
-		return accountData.getProtocoloSaliente().getPuerto();
+		return accountData.getOutgoingSaliente().getPuerto();
 	}
 
 	public String getSMTPHost() {
-		return accountData.getProtocoloSaliente().getServidor();
+		return accountData.getOutgoingSaliente().getServidor();
 	}
 
 	public String getDisplayableName() {
@@ -46,7 +45,7 @@ public class EmailInteractionChannelConfiguration {
 		this.newsSubject = newsSubject;
 	}
 
-	public ServidorCorreo getAccountData() {
+	public EmailServer getAccountData() {
 		return accountData;
 	}
 
