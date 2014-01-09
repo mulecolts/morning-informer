@@ -63,14 +63,14 @@ public class EmailInteractionChannel implements InteractionChannel {
 		try {
 			this.emailConnection.conectar();
 		} catch (UnknownHostException e) {
-			logger.error(Messages.getString("Logs.OPENING_MAIL_CHANNEL"), e); //$NON-NLS-1$
-			throw new ChannelOpeningException(Messages.getString("Errors.UNKNOWN_HOST"), e); //$NON-NLS-1$
+			logger.error(Messages.getString("Logs.OPENING_MAIL_CHANNEL"), e);
+			throw new ChannelOpeningException(Messages.getString("Errors.UNKNOWN_HOST"), e);
 		} catch (AutenticacionException e) {
-			logger.error(Messages.getString("Logs.OPENING_MAIL_CHANNEL"), e); //$NON-NLS-1$
-			throw new ChannelOpeningException(Messages.getString("Errors.INVALID_AUTH"), e); //$NON-NLS-1$
+			logger.error(Messages.getString("Logs.OPENING_MAIL_CHANNEL"), e);
+			throw new ChannelOpeningException(Messages.getString("Errors.INVALID_AUTH"), e);
 		} catch (ConexionException e) {
-			logger.error(Messages.getString("Logs.OPENING_MAIL_CHANNEL"), e); //$NON-NLS-1$
-			throw new ChannelOpeningException(Messages.getString("Errors.UNKNOWN"), e); //$NON-NLS-1$
+			logger.error(Messages.getString("Logs.OPENING_MAIL_CHANNEL"), e);
+			throw new ChannelOpeningException(Messages.getString("Errors.UNKNOWN"), e);
 		}
 	}
 

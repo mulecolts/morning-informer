@@ -42,7 +42,7 @@ public class EmailContactData implements ContactData {
 	public Object getPreference(Object preferenceKey) {
 		Object preferenceValue = preferences.get(preferenceKey);
 
-		return preferenceValue == null ? Messages.getString("Prefs.PREF_NOT_FOUND") //$NON-NLS-1$
+		return preferenceValue == null ? Messages.getString("Prefs.PREF_NOT_FOUND")
 				: preferenceValue;
 	}
 
