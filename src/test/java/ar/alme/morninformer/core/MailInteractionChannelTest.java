@@ -14,13 +14,13 @@ import ar.alme.morninformer.feeds.UnknownNewsSourceException;
 import ar.alme.morninformer.mail.EmailContactData;
 import ar.alme.morninformer.mail.EmailInteractionChannel;
 import ar.alme.morninformer.mail.EmailInteractionChannelConfiguration;
+import ar.alme.morninformer.mail.EmailServer;
 import ar.alme.morninformer.news.NewsReport;
 import ar.alme.morninformer.news.URLShorteningReport;
 import ar.alme.morninformer.users.Preferences;
 import ar.alme.utils.BitlyURLShortener;
 import ar.mil.cideso.correo.configuracion.ProtocoloCorreo;
 import ar.mil.cideso.correo.configuracion.ProtocoloCorreoFactory;
-import ar.mil.cideso.correo.configuracion.ServidorCorreo;
 
 public class MailInteractionChannelTest
 {
@@ -38,10 +38,15 @@ public class MailInteractionChannelTest
 		newsSource = RSSNewsSourceFactory.instance().createLaNacionUltimas();
 
 		contactData = new EmailContactData("Alme", "abdala.alejo@gmail.com");
-		contactData.setPreference(Preferences.EMAIL_FORMAT, Preferences.EMAIL_FORMAT_HTML);
-		BitlyURLShortener.setInstance(new BitlyURLShortener("morninginformer", "R_9fa320eaeac71b10366e10f35b61fe71"));
-		ServidorCorreo accountData = new ServidorCorreo("morning.informer", "gmail.com", "morninformer", getProtoSaliente(), getProtoEntrante());
-		EmailInteractionChannelConfiguration configuration = new EmailInteractionChannelConfiguration(accountData, "Morning Informer for you!");
+		contactData.setPreference(Preferences.EMAIL_FORMAT,
+				Preferences.EMAIL_FORMAT_HTML);
+		BitlyURLShortener.setInstance(new BitlyURLShortener("morninginformer",
+				"R_9fa320eaeac71b10366e10f35b61fe71"));
+		EmailServer accountData = new EmailServer("morning.informer",
+				"gmail.com", "morninformer", getProtoSaliente(),
+				getProtoEntrante());
+		EmailInteractionChannelConfiguration configuration = new EmailInteractionChannelConfiguration(
+				accountData, "Morning Informer for you!");
 		configuration.setDisplayableName("Morning Informer");
 
 		mailChannel = new EmailInteractionChannel(configuration);
