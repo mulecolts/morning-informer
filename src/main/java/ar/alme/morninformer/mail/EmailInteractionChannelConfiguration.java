@@ -1,6 +1,5 @@
 package ar.alme.morninformer.mail;
 
-
 public class EmailInteractionChannelConfiguration
 {
 
@@ -8,8 +7,8 @@ public class EmailInteractionChannelConfiguration
 	private String newsSubject = "(no subject)";
 	private final EmailServer accountData;
 
-	public EmailInteractionChannelConfiguration(EmailServer accountData,
-			String newsSubject) {
+	public EmailInteractionChannelConfiguration(EmailServer accountData, String newsSubject)
+	{
 		this.accountData = accountData;
 		this.newsSubject = newsSubject;
 	}
@@ -24,11 +23,13 @@ public class EmailInteractionChannelConfiguration
 		return accountData.getAuthenticator().getNombreCuentaParaLogin();
 	}
 
-	public int getSMTPPort() {
+	public int getSMTPPort()
+	{
 		return accountData.getOutgoingSaliente().getPuerto();
 	}
 
-	public String getSMTPHost() {
+	public String getSMTPHost()
+	{
 		return accountData.getOutgoingSaliente().getServidor();
 	}
 
@@ -52,7 +53,8 @@ public class EmailInteractionChannelConfiguration
 		this.newsSubject = newsSubject;
 	}
 
-	public EmailServer getAccountData() {
+	public EmailServer getAccountData()
+	{
 		return accountData;
 	}
 

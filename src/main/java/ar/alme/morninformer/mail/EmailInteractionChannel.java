@@ -49,7 +49,8 @@ public class EmailInteractionChannel implements InteractionChannel
 		this.initializeEmailConnection();
 	}
 
-	private void initializeEmailConnection() {
+	private void initializeEmailConnection()
+	{
 		emailConnection = ConexionFactory.crear(configuration.getAccountData().getInside());
 	}
 

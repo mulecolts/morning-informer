@@ -38,15 +38,10 @@ public class MailInteractionChannelTest
 		newsSource = RSSNewsSourceFactory.instance().createLaNacionUltimas();
 
 		contactData = new EmailContactData("Alme", "abdala.alejo@gmail.com");
-		contactData.setPreference(Preferences.EMAIL_FORMAT,
-				Preferences.EMAIL_FORMAT_HTML);
-		BitlyURLShortener.setInstance(new BitlyURLShortener("morninginformer",
-				"R_9fa320eaeac71b10366e10f35b61fe71"));
-		EmailServer accountData = new EmailServer("morning.informer",
-				"gmail.com", "morninformer", getProtoSaliente(),
-				getProtoEntrante());
-		EmailInteractionChannelConfiguration configuration = new EmailInteractionChannelConfiguration(
-				accountData, "Morning Informer for you!");
+		contactData.setPreference(Preferences.EMAIL_FORMAT, Preferences.EMAIL_FORMAT_HTML);
+		BitlyURLShortener.setInstance(new BitlyURLShortener("morninginformer", "R_9fa320eaeac71b10366e10f35b61fe71"));
+		EmailServer accountData = new EmailServer("morning.informer", "gmail.com", "morninformer", getProtoSaliente(), getProtoEntrante());
+		EmailInteractionChannelConfiguration configuration = new EmailInteractionChannelConfiguration(accountData, "Morning Informer for you!");
 		configuration.setDisplayableName("Morning Informer");
 
 		mailChannel = new EmailInteractionChannel(configuration);

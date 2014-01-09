@@ -116,15 +116,11 @@ public class InformerMain
 		}
 	}
 
-
-	private EmailInteractionChannelConfiguration getEmailConfiguration(
-			String user, String domain, String password, String newsSubject,
-			String displayableName, String incomingServer, String outgoingServer) {
-		EmailServer accountData = new EmailServer(user, domain, password,
-				this.getOutgoingProtocol(outgoingServer),
-				this.getIncomingProtocol(incomingServer));
-		EmailInteractionChannelConfiguration emailConfiguration = new EmailInteractionChannelConfiguration(
-				accountData, newsSubject);
+	private EmailInteractionChannelConfiguration getEmailConfiguration(String user, String domain, String password, String newsSubject, String displayableName,
+			String incomingServer, String outgoingServer)
+	{
+		EmailServer accountData = new EmailServer(user, domain, password, this.getOutgoingProtocol(outgoingServer), this.getIncomingProtocol(incomingServer));
+		EmailInteractionChannelConfiguration emailConfiguration = new EmailInteractionChannelConfiguration(accountData, newsSubject);
 		emailConfiguration.setDisplayableName(displayableName);
 
 		return emailConfiguration;
