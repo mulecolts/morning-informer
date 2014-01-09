@@ -1,0 +1,102 @@
+<UserProfiles>
+
+	<UserProfile name="Alejo Abdala">
+
+		<ContactDataList>
+
+			<ContactData channelType="email">
+				<ContactName>Alejo Abdala</ContactName>
+				<EmailAddress>abdala.alejo@gmail.com</EmailAddress>
+
+				<Preferences>
+					<Preference key="EMAIL_FORMAT">EMAIL_FORMAT_HTML</Preference>
+				</Preferences>
+			</ContactData>
+
+		</ContactDataList>
+
+		<NewsSources>
+
+			<NewsSource type="rss">
+				<Property key="name">LA NACION ULTIMAS</Property>
+			</NewsSource>
+
+			<NewsSource type="rss">
+				<Property key="name">CLARIN</Property>
+			</NewsSource>
+
+			<NewsSource type="twitter">
+				<Property key="screenName">rodrigouroz</Property>
+			</NewsSource>
+			<NewsSource type="twitter">
+				<Property key="screenName">mnsaldivar</Property>
+			</NewsSource>
+
+		</NewsSources>
+
+	</UserProfile>
+
+	<!-- <UserProfile name="Damián Camarasa"> -->
+
+	<!-- <ContactDataList> -->
+
+	<!-- <ContactData channelType="email"> -->
+	<!-- <ContactName>Ing. Camarasa</ContactName> -->
+	<!-- <EmailAddress>dcamarasa@gmail.com</EmailAddress> -->
+
+	<!-- <Preferences> -->
+	<!-- <Preference key="EMAIL_FORMAT">EMAIL_FORMAT_HTML</Preference> -->
+	<!-- </Preferences> -->
+	<!-- </ContactData> -->
+
+	<!-- </ContactDataList> -->
+
+	<!-- <NewsSources> -->
+
+	<!-- <NewsSource type="twitter"> -->
+	<!-- <Property key="screenName">CFKArgentina</Property> -->
+	<!-- </NewsSource> -->
+	<!-- <NewsSource type="twitter"> -->
+	<!-- <Property key="screenName">mauriciomacri</Property> -->
+	<!-- </NewsSource> -->
+
+	<!-- </NewsSources> -->
+
+	<!-- </UserProfile> -->
+	<!-- <UserProfile name="Seba Cabezón"> -->
+
+	<!-- <ContactDataList> -->
+
+	<!-- <ContactData channelType="email"> -->
+	<!-- <ContactName>Seba Cabezon</ContactName> -->
+	<!-- <EmailAddress>sebastian.scd@gmail.com</EmailAddress> -->
+
+	<!-- <Preferences> -->
+	<!-- <Preference key="EMAIL_FORMAT">EMAIL_FORMAT_HTML</Preference> -->
+	<!-- </Preferences> -->
+	<!-- </ContactData> -->
+	<!-- <ContactData channelType="email"> -->
+	<!-- <ContactName>Alejo Abdala</ContactName> -->
+	<!-- <EmailAddress>abdala.alejo@gmail.com</EmailAddress> -->
+
+	<!-- <Preferences> -->
+	<!-- <Preference key="EMAIL_FORMAT">EMAIL_FORMAT_HTML</Preference> -->
+	<!-- </Preferences> -->
+	<!-- </ContactData> -->
+
+	<!-- </ContactDataList> -->
+
+	<!-- <NewsSources> -->
+
+	<!-- <NewsSource type="twitter"> -->
+	<!-- <Property key="screenName">rogerwaters</Property> -->
+	<!-- </NewsSource> -->
+	<!-- <NewsSource type="rss"> -->
+	<!-- <Property key="name">CLARIN</Property> -->
+	<!-- </NewsSource> -->
+
+	<!-- </NewsSources> -->
+
+	<!-- </UserProfile> -->
+
+</UserProfiles>
