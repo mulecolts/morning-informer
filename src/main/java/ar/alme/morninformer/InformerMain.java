@@ -13,13 +13,13 @@ import ar.alme.morninformer.feeds.RSSNewsSourceFactory;
 import ar.alme.morninformer.feeds.UnknownNewsSourceException;
 import ar.alme.morninformer.mail.EmailInteractionChannel;
 import ar.alme.morninformer.mail.EmailInteractionChannelConfiguration;
+import ar.alme.morninformer.mail.EmailServer;
 import ar.alme.morninformer.users.UserLoadException;
 import ar.alme.morninformer.users.UserProfile;
 import ar.alme.morninformer.users.XMLUserLoader;
 import ar.alme.utils.BitlyURLShortener;
 import ar.mil.cideso.correo.configuracion.ProtocoloCorreo;
 import ar.mil.cideso.correo.configuracion.ProtocoloCorreoFactory;
-import ar.mil.cideso.correo.configuracion.ServidorCorreo;
 
 public class InformerMain {
 
@@ -126,7 +126,7 @@ public class InformerMain {
 	private EmailInteractionChannelConfiguration getEmailConfiguration(
 			String user, String domain, String password, String newsSubject,
 			String displayableName, String incomingServer, String outgoingServer) {
-		ServidorCorreo accountData = new ServidorCorreo(user, domain, password,
+		EmailServer accountData = new EmailServer(user, domain, password,
 				this.getOutgoingProtocol(outgoingServer),
 				this.getIncomingProtocol(incomingServer));
 		EmailInteractionChannelConfiguration emailConfiguration = new EmailInteractionChannelConfiguration(
