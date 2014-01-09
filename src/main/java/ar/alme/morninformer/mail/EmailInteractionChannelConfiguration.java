@@ -5,7 +5,7 @@ import ar.mil.cideso.correo.configuracion.ServidorCorreo;
 public class EmailInteractionChannelConfiguration {
 
 	private String displayableName;
-	private String newsSubject = "(no subject)";
+	private String newsSubject = Messages.getString("Defaults.SUBJECT"); //$NON-NLS-1$
 	private final ServidorCorreo accountData;
 
 	public EmailInteractionChannelConfiguration(ServidorCorreo accountData,
