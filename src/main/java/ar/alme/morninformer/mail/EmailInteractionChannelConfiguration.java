@@ -6,7 +6,7 @@ public class EmailInteractionChannelConfiguration
 {
 
 	private String displayableName;
-	private String newsSubject = "(no subject)";
+	private String newsSubject = Messages.getString("Defaults.SUBJECT");
 	private final ServidorCorreo accountData;
 
 	public EmailInteractionChannelConfiguration(ServidorCorreo accountData, String newsSubject)

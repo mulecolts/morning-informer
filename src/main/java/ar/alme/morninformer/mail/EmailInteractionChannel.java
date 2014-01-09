@@ -66,14 +66,14 @@ public class EmailInteractionChannel implements InteractionChannel
 		try {
 			this.emailConnection.conectar();
 		} catch (UnknownHostException e) {
-			logger.error("Opening mail channel", e);
-			throw new ChannelOpeningException("Unknown host", e);
+			logger.error(Messages.getString("Logs.OPENING_MAIL_CHANNEL"), e);
+			throw new ChannelOpeningException(Messages.getString("Errors.UNKNOWN_HOST"), e);
 		} catch (AutenticacionException e) {
-			logger.error("Opening mail channel", e);
-			throw new ChannelOpeningException("Invalid authentication", e);
+			logger.error(Messages.getString("Logs.OPENING_MAIL_CHANNEL"), e);
+			throw new ChannelOpeningException(Messages.getString("Errors.INVALID_AUTH"), e);
 		} catch (ConexionException e) {
-			logger.error("Opening mail channel", e);
-			throw new ChannelOpeningException("Unknown error", e);
+			logger.error(Messages.getString("Logs.OPENING_MAIL_CHANNEL"), e);
+			throw new ChannelOpeningException(Messages.getString("Errors.UNKNOWN"), e);
 		}
 	}
 
