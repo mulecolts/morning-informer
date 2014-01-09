@@ -11,7 +11,8 @@ import org.junit.Test;
 import ar.alme.morninformer.users.ParseException;
 import ar.alme.utils.SimpleHTMLTextExtractor;
 
-public class SimleHTMLTextExtractorTest {
+public class SimleHTMLTextExtractorTest
+{
 
 	private String htmlSource;
 	private String htmlSource2;
@@ -20,7 +21,8 @@ public class SimleHTMLTextExtractorTest {
 	private String htmlSource5;
 
 	@Before
-	public void setUp() throws Exception {
+	public void setUp() throws Exception
+	{
 		htmlSource = "<foo>\n\t<bar attr=attribute_text/>\n\t<baz>\n\t\tGood old text\n\t</baz>\n</foo>";
 		htmlSource2 = "<foo>\n\t<bar attr=attribute_text/>\n\t<baz>\n\t\tGood old text\n\t</baz>\n\t<qux>\n\t\tMoar text\n\t</qux>\n</foo>";
 		htmlSource3 = "<foo";
@@ -29,9 +31,9 @@ public class SimleHTMLTextExtractorTest {
 	}
 
 	@Test
-	public void test() throws ParseException {
-		SimpleHTMLTextExtractor textExtractor = new SimpleHTMLTextExtractor(
-				htmlSource);
+	public void test() throws ParseException
+	{
+		SimpleHTMLTextExtractor textExtractor = new SimpleHTMLTextExtractor(htmlSource);
 		List<String> texts = textExtractor.getText();
 		assertTrue(texts.size() == 1);
 		String text = texts.get(0);
@@ -41,9 +43,9 @@ public class SimleHTMLTextExtractorTest {
 	}
 
 	@Test
-	public void test2() throws ParseException {
-		SimpleHTMLTextExtractor textExtractor = new SimpleHTMLTextExtractor(
-				htmlSource2);
+	public void test2() throws ParseException
+	{
+		SimpleHTMLTextExtractor textExtractor = new SimpleHTMLTextExtractor(htmlSource2);
 		List<String> texts = textExtractor.getText();
 		assertTrue(texts.size() == 2);
 		String text1 = texts.get(0);
@@ -52,28 +54,27 @@ public class SimleHTMLTextExtractorTest {
 		String text2 = texts.get(1);
 		assertEquals("\n\t\tMoar text\n\t", text2);
 		assertEquals("Moar text", text2.trim());
-		assertEquals("Good old text\nMoar text",
-				textExtractor.getConcatTrimmedText());
+		assertEquals("Good old text\nMoar text", textExtractor.getConcatTrimmedText());
 	}
 
 	@Test(expected = ParseException.class)
-	public void test3() throws ParseException {
-		SimpleHTMLTextExtractor textExtractor = new SimpleHTMLTextExtractor(
-				htmlSource3);
+	public void test3() throws ParseException
+	{
+		SimpleHTMLTextExtractor textExtractor = new SimpleHTMLTextExtractor(htmlSource3);
 		textExtractor.getText();
 	}
 
 	@Test
-	public void test4() throws ParseException {
-		SimpleHTMLTextExtractor textExtractor = new SimpleHTMLTextExtractor(
-				htmlSource4);
+	public void test4() throws ParseException
+	{
+		SimpleHTMLTextExtractor textExtractor = new SimpleHTMLTextExtractor(htmlSource4);
 		assertEquals("text", textExtractor.getConcatTrimmedText());
 	}
 
 	@Test
-	public void test5() throws ParseException {
-		SimpleHTMLTextExtractor textExtractor = new SimpleHTMLTextExtractor(
-				htmlSource5);
+	public void test5() throws ParseException
+	{
+		SimpleHTMLTextExtractor textExtractor = new SimpleHTMLTextExtractor(htmlSource5);
 		assertEquals("text", textExtractor.getConcatTrimmedText());
 	}
 

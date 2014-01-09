@@ -4,7 +4,8 @@ import javax.mail.Message.RecipientType;
 
 import org.codemonkey.simplejavamail.Email;
 
-public class EmailBuilder {
+public class EmailBuilder
+{
 
 	private String fromName;
 	private String fromAddress;
@@ -12,7 +13,8 @@ public class EmailBuilder {
 	private String recipientName;
 	private String recipientAddress;
 
-	public Email build() {
+	public Email build()
+	{
 		Email email = new Email();
 
 		email.setFromAddress(fromName, fromAddress);
@@ -27,33 +29,39 @@ public class EmailBuilder {
 		return email;
 	}
 
-	public EmailBuilder setFromName(String fromName) {
+	public EmailBuilder setFromName(String fromName)
+	{
 		this.fromName = fromName;
 		return this;
 	}
 
-	public EmailBuilder setFromAddress(String fromAddress) {
+	public EmailBuilder setFromAddress(String fromAddress)
+	{
 		this.fromAddress = fromAddress;
 		return this;
 	}
 
-	public EmailBuilder setSubject(String subject) {
+	public EmailBuilder setSubject(String subject)
+	{
 		this.subject = subject;
 		return this;
 	}
 
-	public EmailBuilder setRecipient(String contactName, String emailAddress) {
+	public EmailBuilder setRecipient(String contactName, String emailAddress)
+	{
 		this.setRecipientName(contactName);
 		this.setRecipientAddress(emailAddress);
 		return this;
 	}
 
-	public EmailBuilder setRecipientName(String recipientName) {
+	public EmailBuilder setRecipientName(String recipientName)
+	{
 		this.recipientName = recipientName;
 		return this;
 	}
 
-	public EmailBuilder setRecipientAddress(String recipientAddress) {
+	public EmailBuilder setRecipientAddress(String recipientAddress)
+	{
 		this.recipientAddress = recipientAddress;
 		return this;
 	}

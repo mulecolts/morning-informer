@@ -5,15 +5,18 @@ import java.util.List;
 
 import ar.alme.morninformer.users.ParseException;
 
-public class SimpleHTMLTextExtractor {
+public class SimpleHTMLTextExtractor
+{
 	private String htmlSource;
 
-	public SimpleHTMLTextExtractor(String htmlSource) {
+	public SimpleHTMLTextExtractor(String htmlSource)
+	{
 		super();
 		this.htmlSource = htmlSource;
 	}
 
-	public List<String> getText() throws ParseException {
+	public List<String> getText() throws ParseException
+	{
 		LinkedList<String> texts = new LinkedList<String>();
 
 		// check if there is text before the HTML code itself
@@ -29,8 +32,8 @@ public class SimpleHTMLTextExtractor {
 		return texts;
 	}
 
-	private void omNomNom(String source, LinkedList<String> texts)
-			throws ParseException {
+	private void omNomNom(String source, LinkedList<String> texts) throws ParseException
+	{
 		int beginIndex, endIndex;
 
 		beginIndex = source.indexOf(">");
@@ -59,7 +62,8 @@ public class SimpleHTMLTextExtractor {
 		this.omNomNom(croppedSource.substring(endIndex), texts);
 	}
 
-	public String getConcatTrimmedText() throws ParseException {
+	public String getConcatTrimmedText() throws ParseException
+	{
 		List<String> text = this.getText();
 		String result = "";
 		for (int i = 0; i < text.size(); i++) {

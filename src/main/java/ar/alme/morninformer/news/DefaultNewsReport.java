@@ -6,7 +6,8 @@ import java.util.List;
 
 import ar.alme.morninformer.NewsSourceDescription;
 
-public class DefaultNewsReport implements NewsReport {
+public class DefaultNewsReport implements NewsReport
+{
 
 	private String title;
 	private String author;
@@ -14,7 +15,8 @@ public class DefaultNewsReport implements NewsReport {
 	private List<PieceOfNews> piecesOfNews;
 	private final NewsSourceDescription source;
 
-	public DefaultNewsReport(NewsSourceDescription source) {
+	public DefaultNewsReport(NewsSourceDescription source)
+	{
 		this.source = source;
 		this.piecesOfNews = new LinkedList<PieceOfNews>();
 	}
@@ -24,7 +26,8 @@ public class DefaultNewsReport implements NewsReport {
 	 * 
 	 * @see ar.alme.morninformer.core.news.NewsReport#setTitle(java.lang.String)
 	 */
-	public void setTitle(String feedTitle) {
+	public void setTitle(String feedTitle)
+	{
 		this.title = feedTitle;
 	}
 
@@ -34,7 +37,8 @@ public class DefaultNewsReport implements NewsReport {
 	 * @see
 	 * ar.alme.morninformer.core.news.NewsReport#setAuthor(java.lang.String)
 	 */
-	public void setAuthor(String author) {
+	public void setAuthor(String author)
+	{
 		this.author = author;
 	}
 
@@ -43,7 +47,8 @@ public class DefaultNewsReport implements NewsReport {
 	 * 
 	 * @see ar.alme.morninformer.core.news.NewsReport#setDate(java.util.Date)
 	 */
-	public void setDate(Date date) {
+	public void setDate(Date date)
+	{
 		this.date = date;
 	}
 
@@ -54,7 +59,8 @@ public class DefaultNewsReport implements NewsReport {
 	 * ar.alme.morninformer.core.news.NewsReport#addPieceOfNews(ar.alme.morninformer
 	 * .core.news.PieceOfNews)
 	 */
-	public void addPieceOfNews(PieceOfNews pieceOfNews) {
+	public void addPieceOfNews(PieceOfNews pieceOfNews)
+	{
 		this.piecesOfNews.add(pieceOfNews);
 	}
 
@@ -63,7 +69,8 @@ public class DefaultNewsReport implements NewsReport {
 	 * 
 	 * @see ar.alme.morninformer.core.news.NewsReport#getTitle()
 	 */
-	public String getTitle() {
+	public String getTitle()
+	{
 		return title;
 	}
 
@@ -72,7 +79,8 @@ public class DefaultNewsReport implements NewsReport {
 	 * 
 	 * @see ar.alme.morninformer.core.news.NewsReport#getAuthor()
 	 */
-	public String getAuthor() {
+	public String getAuthor()
+	{
 		return author;
 	}
 
@@ -81,7 +89,8 @@ public class DefaultNewsReport implements NewsReport {
 	 * 
 	 * @see ar.alme.morninformer.core.news.NewsReport#getDate()
 	 */
-	public Date getDate() {
+	public Date getDate()
+	{
 		return date;
 	}
 
@@ -90,12 +99,14 @@ public class DefaultNewsReport implements NewsReport {
 	 * 
 	 * @see ar.alme.morninformer.core.news.NewsReport#getPiecesOfNews()
 	 */
-	public List<PieceOfNews> getPiecesOfNews() {
+	public List<PieceOfNews> getPiecesOfNews()
+	{
 		return piecesOfNews;
 	}
 
 	@Override
-	public NewsSourceDescription getNewsSource() {
+	public NewsSourceDescription getNewsSource()
+	{
 		return this.source;
 	}
 

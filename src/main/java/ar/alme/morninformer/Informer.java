@@ -13,31 +13,33 @@ import ar.alme.morninformer.feeds.UnknownNewsSourceException;
 import ar.alme.morninformer.news.NewsReport;
 import ar.alme.morninformer.users.UserProfile;
 
-public class Informer {
+public class Informer
+{
 
 	private Map<ChannelType, InteractionChannel> channels = new HashMap<ChannelType, InteractionChannel>();
 	private List<UserProfile> users = new LinkedList<UserProfile>();
 	private NewsSourceRepository newsSourceRepository = new NewsSourceRepository();
 
-	public void addUserProfile(UserProfile userProfile) {
+	public void addUserProfile(UserProfile userProfile)
+	{
 		this.users.add(userProfile);
 	}
 
-	public void addInteractionChannel(InteractionChannel channel) {
+	public void addInteractionChannel(InteractionChannel channel)
+	{
 		this.channels.put(channel.getChannelType(), channel);
 	}
 
-	public void inform() throws UnknownNewsSourceException {
+	public void inform() throws UnknownNewsSourceException
+	{
 		try {
 			// load all the will-be-needed reports first, so to avoid fetching
 			// one same report for every user that wants it
 			List<NewsReport> reports = getAllDesiredReports();
 
 			for (UserProfile user : users) {
-				List<ContactData> userContactDataList = user
-						.getContactDataList();
-				List<NewsReport> filteredReports = filterReportsForSingleUser(
-						reports, user);
+				List<ContactData> userContactDataList = user.getContactDataList();
+				List<NewsReport> filteredReports = filterReportsForSingleUser(reports, user);
 				this.dispatch(filteredReports, userContactDataList);
 			}
 
@@ -53,12 +55,10 @@ public class Informer {
 	 * @param user
 	 * @return
 	 */
-	private List<NewsReport> filterReportsForSingleUser(
-			List<NewsReport> reports, UserProfile user) {
-		Collection<NewsSourceDescription> desiredNewsSources = user
-				.getDesiredNewsSources();
-		List<NewsReport> filteredReports = new ArrayList<NewsReport>(
-				desiredNewsSources.size());
+	private List<NewsReport> filterReportsForSingleUser(List<NewsReport> reports, UserProfile user)
+	{
+		Collection<NewsSourceDescription> desiredNewsSources = user.getDesiredNewsSources();
+		List<NewsReport> filteredReports = new ArrayList<NewsReport>(desiredNewsSources.size());
 		for (NewsReport report : reports)
 			if (desiredNewsSources.contains(report.getNewsSource()))
 				filteredReports.add(report);
@@ -73,34 +73,30 @@ public class Informer {
 	 * @throws FeedLoadException
 	 * @throws UnknownNewsSourceException
 	 */
-	private List<NewsReport> getAllDesiredReports() throws FeedLoadException,
-			UnknownNewsSourceException {
-		Collection<NewsSource> targetNewsSources = this
-				.getAllUsersDesiredSources();
+	private List<NewsReport> getAllDesiredReports() throws FeedLoadException, UnknownNewsSourceException
+	{
+		Collection<NewsSource> targetNewsSources = this.getAllUsersDesiredSources();
 		List<NewsReport> reports = this.getNewsReports(targetNewsSources);
 		return reports;
 	}
 
-	private void dispatch(List<NewsReport> filteredReports,
-			List<ContactData> contactDataList) {
+	private void dispatch(List<NewsReport> filteredReports, List<ContactData> contactDataList)
+	{
 		for (ContactData contactData : contactDataList) {
 			ChannelType destChannelType = contactData.getChannelType();
-			InteractionChannel interactionChannel = this.channels
-					.get(destChannelType);
+			InteractionChannel interactionChannel = this.channels.get(destChannelType);
 			for (NewsReport newsReport : filteredReports)
 				interactionChannel.sendNewsReport(contactData, newsReport);
 		}
 	}
 
-	private Collection<NewsSource> getAllUsersDesiredSources()
-			throws UnknownNewsSourceException {
+	private Collection<NewsSource> getAllUsersDesiredSources() throws UnknownNewsSourceException
+	{
 		HashSet<NewsSource> targetNewsSources = new HashSet<NewsSource>();
 
 		for (UserProfile user : users)
-			for (NewsSourceDescription newsSourceDescription : user
-					.getDesiredNewsSources()) {
-				NewsSource newsSource = this.newsSourceRepository
-						.get(newsSourceDescription);
+			for (NewsSourceDescription newsSourceDescription : user.getDesiredNewsSources()) {
+				NewsSource newsSource = this.newsSourceRepository.get(newsSourceDescription);
 				targetNewsSources.add(newsSource);
 			}
 		// TODO contemplate non-existing or non-instantiated news sources
@@ -108,8 +104,8 @@ public class Informer {
 		return targetNewsSources;
 	}
 
-	private List<NewsReport> getNewsReports(
-			Collection<NewsSource> targetNewsSources) throws FeedLoadException {
+	private List<NewsReport> getNewsReports(Collection<NewsSource> targetNewsSources) throws FeedLoadException
+	{
 		List<NewsReport> newsReports = new LinkedList<NewsReport>();
 		for (NewsSource source : targetNewsSources) {
 			NewsReport newsReport = source.latestNews();

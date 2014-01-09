@@ -22,7 +22,8 @@ import ar.mil.cideso.correo.configuracion.ProtocoloCorreo;
 import ar.mil.cideso.correo.configuracion.ProtocoloCorreoFactory;
 import ar.mil.cideso.correo.configuracion.ServidorCorreo;
 
-public class MailInteractionChannelTest {
+public class MailInteractionChannelTest
+{
 
 	private static final String LN_URL = "http://servicios.lanacion.com.ar/herramientas/rss/origen=2";
 	private NewsSource newsSource;
@@ -30,47 +31,43 @@ public class MailInteractionChannelTest {
 	private EmailContactData contactData;
 
 	@Before
-	public void setUp() throws UnknownNewsSourceException {
-		RSSNewsSourceFactory.instance().learn(
-				NewsSourceDescription.RSS_LA_NACION_ULTIMAS, LN_URL);
+	public void setUp() throws UnknownNewsSourceException
+	{
+		RSSNewsSourceFactory.instance().learn(NewsSourceDescription.RSS_LA_NACION_ULTIMAS, LN_URL);
 
 		newsSource = RSSNewsSourceFactory.instance().createLaNacionUltimas();
 
 		contactData = new EmailContactData("Alme", "abdala.alejo@gmail.com");
-		contactData.setPreference(Preferences.EMAIL_FORMAT,
-				Preferences.EMAIL_FORMAT_HTML);
-		BitlyURLShortener.setInstance(new BitlyURLShortener("morninginformer",
-				"R_9fa320eaeac71b10366e10f35b61fe71"));
-		ServidorCorreo accountData = new ServidorCorreo("morning.informer",
-				"gmail.com", "morninformer", getProtoSaliente(),
-				getProtoEntrante());
-		EmailInteractionChannelConfiguration configuration = new EmailInteractionChannelConfiguration(
-				accountData, "Morning Informer for you!");
+		contactData.setPreference(Preferences.EMAIL_FORMAT, Preferences.EMAIL_FORMAT_HTML);
+		BitlyURLShortener.setInstance(new BitlyURLShortener("morninginformer", "R_9fa320eaeac71b10366e10f35b61fe71"));
+		ServidorCorreo accountData = new ServidorCorreo("morning.informer", "gmail.com", "morninformer", getProtoSaliente(), getProtoEntrante());
+		EmailInteractionChannelConfiguration configuration = new EmailInteractionChannelConfiguration(accountData, "Morning Informer for you!");
 		configuration.setDisplayableName("Morning Informer");
 
 		mailChannel = new EmailInteractionChannel(configuration);
 	}
 
-	private ProtocoloCorreo getProtoEntrante() {
-		ProtocoloCorreoFactory factory = new ProtocoloCorreoFactory()
-				.setHabilitarSSL(true);
+	private ProtocoloCorreo getProtoEntrante()
+	{
+		ProtocoloCorreoFactory factory = new ProtocoloCorreoFactory().setHabilitarSSL(true);
 		ProtocoloCorreo proto = factory.crearIMAP("imap.gmail.com");
 		return proto;
 		// return ProtocoloCorreoFactory.crearIMAPDefault("imap.gmail.com");
 	}
 
-	private ProtocoloCorreo getProtoSaliente() {
+	private ProtocoloCorreo getProtoSaliente()
+	{
 		return ProtocoloCorreoFactory.crearSMTPDefault("smtp.gmail.com");
 	}
 
 	@Ignore
 	// not a test, more of a runner
 	@Test
-	public void test() throws FeedLoadException, ChannelOpeningException {
+	public void test() throws FeedLoadException, ChannelOpeningException
+	{
 		mailChannel.open();
 		NewsReport latestNews = newsSource.latestNews();
-		mailChannel.sendNewsReport(contactData, new URLShorteningReport(
-				latestNews));
+		mailChannel.sendNewsReport(contactData, new URLShorteningReport(latestNews));
 	}
 
 }

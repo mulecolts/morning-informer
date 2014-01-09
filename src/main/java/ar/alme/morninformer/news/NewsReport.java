@@ -5,7 +5,8 @@ import java.util.List;
 
 import ar.alme.morninformer.NewsSourceDescription;
 
-public interface NewsReport {
+public interface NewsReport
+{
 
 	public abstract void setTitle(String feedTitle);
 

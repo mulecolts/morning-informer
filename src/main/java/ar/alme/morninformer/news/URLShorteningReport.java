@@ -6,11 +6,13 @@ import java.util.List;
 
 import ar.alme.morninformer.NewsSourceDescription;
 
-public class URLShorteningReport implements NewsReport {
+public class URLShorteningReport implements NewsReport
+{
 
 	private NewsReport report;
 
-	public URLShorteningReport(NewsReport report) {
+	public URLShorteningReport(NewsReport report)
+	{
 		super();
 		this.report = report;
 	}
@@ -19,7 +21,8 @@ public class URLShorteningReport implements NewsReport {
 	 * @param feedTitle
 	 * @see ar.alme.morninformer.news.DefaultNewsReport#setTitle(java.lang.String)
 	 */
-	public void setTitle(String feedTitle) {
+	public void setTitle(String feedTitle)
+	{
 		report.setTitle(feedTitle);
 	}
 
@@ -27,7 +30,8 @@ public class URLShorteningReport implements NewsReport {
 	 * @param author
 	 * @see ar.alme.morninformer.news.DefaultNewsReport#setAuthor(java.lang.String)
 	 */
-	public void setAuthor(String author) {
+	public void setAuthor(String author)
+	{
 		report.setAuthor(author);
 	}
 
@@ -35,7 +39,8 @@ public class URLShorteningReport implements NewsReport {
 	 * @param date
 	 * @see ar.alme.morninformer.news.DefaultNewsReport#setDate(java.util.Date)
 	 */
-	public void setDate(Date date) {
+	public void setDate(Date date)
+	{
 		report.setDate(date);
 	}
 
@@ -43,7 +48,8 @@ public class URLShorteningReport implements NewsReport {
 	 * @param pieceOfNews
 	 * @see ar.alme.morninformer.news.DefaultNewsReport#addPieceOfNews(ar.alme.morninformer.core.news.BasePieceOfNews)
 	 */
-	public void addPieceOfNews(PieceOfNews pieceOfNews) {
+	public void addPieceOfNews(PieceOfNews pieceOfNews)
+	{
 		report.addPieceOfNews(pieceOfNews);
 	}
 
@@ -51,7 +57,8 @@ public class URLShorteningReport implements NewsReport {
 	 * @return
 	 * @see ar.alme.morninformer.news.DefaultNewsReport#getTitle()
 	 */
-	public String getTitle() {
+	public String getTitle()
+	{
 		return report.getTitle();
 	}
 
@@ -59,7 +66,8 @@ public class URLShorteningReport implements NewsReport {
 	 * @return
 	 * @see ar.alme.morninformer.news.DefaultNewsReport#getAuthor()
 	 */
-	public String getAuthor() {
+	public String getAuthor()
+	{
 		return report.getAuthor();
 	}
 
@@ -67,7 +75,8 @@ public class URLShorteningReport implements NewsReport {
 	 * @return
 	 * @see ar.alme.morninformer.news.DefaultNewsReport#getDate()
 	 */
-	public Date getDate() {
+	public Date getDate()
+	{
 		return report.getDate();
 	}
 
@@ -75,10 +84,10 @@ public class URLShorteningReport implements NewsReport {
 	 * @return
 	 * @see ar.alme.morninformer.news.DefaultNewsReport#getPiecesOfNews()
 	 */
-	public List<PieceOfNews> getPiecesOfNews() {
+	public List<PieceOfNews> getPiecesOfNews()
+	{
 		List<PieceOfNews> piecesOfNews = report.getPiecesOfNews();
-		List<PieceOfNews> urlEncodingPieces = new ArrayList<PieceOfNews>(
-				piecesOfNews.size());
+		List<PieceOfNews> urlEncodingPieces = new ArrayList<PieceOfNews>(piecesOfNews.size());
 		for (PieceOfNews poNews : piecesOfNews) {
 			urlEncodingPieces.add(new URLShorteningPieceOfNews(poNews));
 		}
@@ -87,7 +96,8 @@ public class URLShorteningReport implements NewsReport {
 	}
 
 	@Override
-	public NewsSourceDescription getNewsSource() {
+	public NewsSourceDescription getNewsSource()
+	{
 		return report.getNewsSource();
 	}
 

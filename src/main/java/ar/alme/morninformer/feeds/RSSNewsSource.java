@@ -17,7 +17,8 @@ import ar.alme.morninformer.news.NewsReport;
 import com.sun.syndication.feed.synd.SyndEntry;
 import com.sun.syndication.feed.synd.SyndFeed;
 
-public class RSSNewsSource implements NewsSource {
+public class RSSNewsSource implements NewsSource
+{
 
 	private static URL NO_LINK;
 
@@ -25,7 +26,8 @@ public class RSSNewsSource implements NewsSource {
 		initializeConstants();
 	}
 
-	private static void initializeConstants() {
+	private static void initializeConstants()
+	{
 		try {
 			NO_LINK = new URL("http://no-link-available");
 		} catch (MalformedURLException e) {
@@ -39,8 +41,8 @@ public class RSSNewsSource implements NewsSource {
 	private final FeedReader feedReader;
 	private final NewsSourceDescription feedName;
 
-	public RSSNewsSource(NewsSourceDescription feedName, String url,
-			FeedReader feedReader) {
+	public RSSNewsSource(NewsSourceDescription feedName, String url, FeedReader feedReader)
+	{
 		super();
 		this.feedName = feedName;
 		this.url = url;
@@ -52,7 +54,8 @@ public class RSSNewsSource implements NewsSource {
 	 * 
 	 * @see ar.alme.mule.morninformer.core.news.NewsSource#latestNews()
 	 */
-	public final NewsReport latestNews() throws FeedLoadException {
+	public final NewsReport latestNews() throws FeedLoadException
+	{
 		try {
 			SyndFeed feed = this.loadFeed();
 			NewsReport report = new DefaultNewsReport(this.feedName);
@@ -73,20 +76,21 @@ public class RSSNewsSource implements NewsSource {
 	}
 
 	@SuppressWarnings("unchecked")
-	private void loadPiecesOfNews(SyndFeed feed, NewsReport report) {
+	private void loadPiecesOfNews(SyndFeed feed, NewsReport report)
+	{
 		List<SyndEntry> entries = feed.getEntries();
 
 		for (SyndEntry entry : entries) {
 			String title = feedReader.getTitle(entry);
 			String description = feedReader.getDescription(entry);
 			URL link = this.getURL(entry);
-			DefaultPieceOfNews pieceOfNews = new DefaultPieceOfNews(title,
-					description, link);
+			DefaultPieceOfNews pieceOfNews = new DefaultPieceOfNews(title, description, link);
 			report.addPieceOfNews(pieceOfNews);
 		}
 	}
 
-	private URL getURL(SyndEntry entry) {
+	private URL getURL(SyndEntry entry)
+	{
 		URL link;
 		try {
 			link = feedReader.getLink(entry);
@@ -97,7 +101,8 @@ public class RSSNewsSource implements NewsSource {
 		}
 	}
 
-	private SyndFeed loadFeed() throws FeedLoadException {
+	private SyndFeed loadFeed() throws FeedLoadException
+	{
 		try {
 			return RssUtils.createFeed(this.url);
 		} catch (Exception e) {
@@ -106,7 +111,8 @@ public class RSSNewsSource implements NewsSource {
 	}
 
 	@Override
-	public NewsSourceDescription getName() {
+	public NewsSourceDescription getName()
+	{
 		return feedName;
 	}
 

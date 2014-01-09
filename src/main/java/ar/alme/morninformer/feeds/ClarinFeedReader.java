@@ -8,26 +8,32 @@ import com.sun.syndication.feed.synd.SyndContent;
 import com.sun.syndication.feed.synd.SyndEntry;
 import com.sun.syndication.feed.synd.SyndFeed;
 
-public class ClarinFeedReader extends FeedReader {
+public class ClarinFeedReader extends FeedReader
+{
 
-	public String getFeedTitle(SyndFeed feed) {
+	public String getFeedTitle(SyndFeed feed)
+	{
 		return feed.getTitle();
 	}
 
-	public String getAuthor(SyndFeed feed) {
+	public String getAuthor(SyndFeed feed)
+	{
 		String author = feed.getAuthor();
 		return author == null ? "Clarín" : author;
 	}
 
-	public Date getDate(SyndFeed feed) {
+	public Date getDate(SyndFeed feed)
+	{
 		return feed.getPublishedDate();
 	}
 
-	public String getTitle(SyndEntry entry) {
+	public String getTitle(SyndEntry entry)
+	{
 		return entry.getTitle();
 	}
 
-	public String getDescription(SyndEntry entry) {
+	public String getDescription(SyndEntry entry)
+	{
 		SyndContent description = entry.getDescription();
 		String content = description.getValue();
 		String contentType = description.getType();
@@ -37,7 +43,8 @@ public class ClarinFeedReader extends FeedReader {
 		return content;
 	}
 
-	public URL getLink(SyndEntry entry) throws MalformedURLException {
+	public URL getLink(SyndEntry entry) throws MalformedURLException
+	{
 		return new URL(entry.getUri());
 	}
 

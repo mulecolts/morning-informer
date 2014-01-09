@@ -11,7 +11,8 @@ import org.junit.Test;
 
 import ar.alme.morninformer.mail.EmailBuilder;
 
-public class EmailBuilderTest {
+public class EmailBuilderTest
+{
 
 	private static final String SUBJECT = "Test";
 	private static final String EMAIL_ADDRESS = "baz@qux.com";
@@ -21,12 +22,14 @@ public class EmailBuilderTest {
 	private EmailBuilder emailBuilder;
 
 	@Before
-	public void startUp() {
+	public void startUp()
+	{
 		emailBuilder = new EmailBuilder();
 	}
 
 	@Test
-	public void test() {
+	public void test()
+	{
 		emailBuilder.setFromAddress(FROM_ADDRESS);
 		emailBuilder.setFromName(FROM_NAME);
 		emailBuilder.setRecipient(CONTACT_NAME, EMAIL_ADDRESS);

@@ -11,19 +11,22 @@ import ar.alme.morninformer.feeds.LNFeedReader;
 import com.sun.syndication.feed.synd.SyndEntry;
 import com.sun.syndication.feed.synd.SyndFeed;
 
-public class LNFeedReaderTest {
+public class LNFeedReaderTest
+{
 
 	private static final String LN_FEED_URI = "http://servicios.lanacion.com.ar/herramientas/rss/origen=2";
 	private LNFeedReader reader;
 
 	@Before
-	public void setUp() {
+	public void setUp()
+	{
 		reader = new LNFeedReader();
 	}
 
 	@SuppressWarnings("unchecked")
 	@Test
-	public void test() throws Exception {
+	public void test() throws Exception
+	{
 		SyndFeed feed = RssUtils.createFeed(LN_FEED_URI);
 		System.out.println(reader.getAuthor(feed));
 		System.out.println(reader.getFeedTitle(feed));

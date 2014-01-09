@@ -6,14 +6,15 @@ import org.slf4j.LoggerFactory;
 import ar.alme.utils.BitlyURLShortener;
 import ar.alme.utils.URLShorteningServiceException;
 
-public class URLShorteningPieceOfNews implements PieceOfNews {
+public class URLShorteningPieceOfNews implements PieceOfNews
+{
 
-	private Logger logger = LoggerFactory
-			.getLogger(URLShorteningPieceOfNews.class);
+	private Logger logger = LoggerFactory.getLogger(URLShorteningPieceOfNews.class);
 
 	private final PieceOfNews pieceOfNews;
 
-	public URLShorteningPieceOfNews(PieceOfNews pieceOfNews) {
+	public URLShorteningPieceOfNews(PieceOfNews pieceOfNews)
+	{
 		this.pieceOfNews = pieceOfNews;
 	}
 
@@ -21,7 +22,8 @@ public class URLShorteningPieceOfNews implements PieceOfNews {
 	 * @return
 	 * @see ar.alme.morninformer.news.PieceOfNews#getTitle()
 	 */
-	public String getTitle() {
+	public String getTitle()
+	{
 		return pieceOfNews.getTitle();
 	}
 
@@ -29,7 +31,8 @@ public class URLShorteningPieceOfNews implements PieceOfNews {
 	 * @return
 	 * @see ar.alme.morninformer.news.PieceOfNews#getDescription()
 	 */
-	public String getDescription() {
+	public String getDescription()
+	{
 		return pieceOfNews.getDescription();
 	}
 
@@ -37,10 +40,10 @@ public class URLShorteningPieceOfNews implements PieceOfNews {
 	 * @return
 	 * @see ar.alme.morninformer.news.PieceOfNews#getLink()
 	 */
-	public String getLink() {
+	public String getLink()
+	{
 		try {
-			String shortened = BitlyURLShortener.getInstance().shorten(
-					this.pieceOfNews.getLink());
+			String shortened = BitlyURLShortener.getInstance().shorten(this.pieceOfNews.getLink());
 			return shortened;
 		} catch (URLShorteningServiceException e) {
 			// well, service not working or otherwise, return the original link

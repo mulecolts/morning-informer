@@ -9,11 +9,10 @@ import java.net.URL;
 import org.junit.Ignore;
 import org.junit.Test;
 
-public class URLTest {
+public class URLTest
+{
 
-	private static final String URL = "http://www.lanacion.com.ar/1420070"
-			+ "-mujica-pidio-terminar-la-polemica-"
-			+ "por-la-difusion-del-monitoreo-del-rio-uruguay";
+	private static final String URL = "http://www.lanacion.com.ar/1420070" + "-mujica-pidio-terminar-la-polemica-" + "por-la-difusion-del-monitoreo-del-rio-uruguay";
 
 	/*
 	 * Ok, today we learned that URL objects should not be used lightly, because
@@ -23,7 +22,8 @@ public class URLTest {
 	 */
 	@Test
 	@Ignore
-	public void test() {
+	public void test()
+	{
 		try {
 			URL url = new URL(URL);
 			assertEquals(url.toExternalForm(), url.toString());
@@ -35,7 +35,8 @@ public class URLTest {
 	}
 
 	@Test(expected = MalformedURLException.class)
-	public void exception() throws MalformedURLException {
+	public void exception() throws MalformedURLException
+	{
 		try {
 			// URL url = new URL(URL);
 			// URL url = new URL("foo@bar");
@@ -49,7 +50,8 @@ public class URLTest {
 	}
 
 	@Test
-	public void noLink() {
+	public void noLink()
+	{
 		try {
 			new URL("http://no-link-available");
 		} catch (MalformedURLException e) {

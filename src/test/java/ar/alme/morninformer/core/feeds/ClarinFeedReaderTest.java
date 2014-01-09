@@ -11,19 +11,22 @@ import ar.alme.morninformer.feeds.ClarinFeedReader;
 import com.sun.syndication.feed.synd.SyndEntry;
 import com.sun.syndication.feed.synd.SyndFeed;
 
-public class ClarinFeedReaderTest {
+public class ClarinFeedReaderTest
+{
 
 	private static final String LN_FEED_URI = "http://clarin.feedsportal.com/c/33088/f/577681/index.rss";
 	private ClarinFeedReader reader;
 
 	@Before
-	public void setUp() {
+	public void setUp()
+	{
 		reader = new ClarinFeedReader();
 	}
 
 	@SuppressWarnings("unchecked")
 	@Test
-	public void test() throws Exception {
+	public void test() throws Exception
+	{
 		SyndFeed feed = RssUtils.createFeed(LN_FEED_URI);
 		System.out.println(reader.getAuthor(feed));
 		System.out.println(reader.getFeedTitle(feed));

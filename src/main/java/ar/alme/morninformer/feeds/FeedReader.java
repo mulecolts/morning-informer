@@ -13,7 +13,8 @@ import ar.alme.utils.SimpleHTMLTextExtractor;
 import com.sun.syndication.feed.synd.SyndEntry;
 import com.sun.syndication.feed.synd.SyndFeed;
 
-public abstract class FeedReader {
+public abstract class FeedReader
+{
 	protected Logger logger = LoggerFactory.getLogger(ClarinFeedReader.class);
 
 	/**
@@ -75,7 +76,8 @@ public abstract class FeedReader {
 	 */
 	public abstract URL getLink(SyndEntry entry) throws MalformedURLException;
 
-	protected String getHTMLDescription(String content) {
+	protected String getHTMLDescription(String content)
+	{
 		try {
 			return new SimpleHTMLTextExtractor(content).getConcatTrimmedText();
 		} catch (ParseException e) {

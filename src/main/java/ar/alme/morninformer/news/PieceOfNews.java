@@ -1,6 +1,7 @@
 package ar.alme.morninformer.news;
 
-public interface PieceOfNews {
+public interface PieceOfNews
+{
 
 	public abstract String getTitle();
 

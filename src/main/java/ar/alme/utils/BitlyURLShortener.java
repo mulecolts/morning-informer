@@ -14,45 +14,43 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.InputSource;
 
-public class BitlyURLShortener {
+public class BitlyURLShortener
+{
 	private static BitlyURLShortener instance;
 
-	public static BitlyURLShortener getInstance() {
+	public static BitlyURLShortener getInstance()
+	{
 		return instance;
 	}
 
-	public static void setInstance(BitlyURLShortener instance) {
+	public static void setInstance(BitlyURLShortener instance)
+	{
 		BitlyURLShortener.instance = instance;
 	}
 
 	private final String login;
 	private final String apiKey;
 
-	public BitlyURLShortener(String login, String apiKey) {
+	public BitlyURLShortener(String login, String apiKey)
+	{
 		this.login = login; // "morninginformer"
 		this.apiKey = apiKey; // "R_9fa320eaeac71b10366e10f35b61fe71"
 	}
 
-	public String shorten(String longUrl) throws URLShorteningServiceException {
+	public String shorten(String longUrl) throws URLShorteningServiceException
+	{
 
 		try {
 			HttpMethod method = new GetMethod("http://api.bit.ly/shorten");
 
-			method.setQueryString(new NameValuePair[] {
-					new NameValuePair("longUrl", longUrl),
-					new NameValuePair("version", "2.0.1"),
-					new NameValuePair("login", login),
-					new NameValuePair("apiKey", apiKey),
-					new NameValuePair("format", "xml"),
-					new NameValuePair("history", "1") });
+			method.setQueryString(new NameValuePair[] { new NameValuePair("longUrl", longUrl), new NameValuePair("version", "2.0.1"), new NameValuePair("login", login),
+					new NameValuePair("apiKey", apiKey), new NameValuePair("format", "xml"), new NameValuePair("history", "1") });
 			new HttpClient().executeMethod(method);
 			String responseXml = method.getResponseBodyAsString();
 
 			// parse response
-			DocumentBuilder docBuilder = DocumentBuilderFactory.newInstance()
-					.newDocumentBuilder();
-			Document document = docBuilder.parse(new InputSource(
-					new StringReader(responseXml)));
+			DocumentBuilder docBuilder = DocumentBuilderFactory.newInstance().newDocumentBuilder();
+			Document document = docBuilder.parse(new InputSource(new StringReader(responseXml)));
 			NodeList nodeList = document.getElementsByTagName("shortUrl");
 			Node item = nodeList.item(0);
 			return item.getTextContent();

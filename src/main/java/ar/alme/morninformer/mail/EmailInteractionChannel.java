@@ -22,10 +22,10 @@ import ar.mil.cideso.correo.Conexion;
 import ar.mil.cideso.correo.ConexionException;
 import ar.mil.cideso.correo.ConexionFactory;
 
-public class EmailInteractionChannel implements InteractionChannel {
+public class EmailInteractionChannel implements InteractionChannel
+{
 
-	private Logger logger = LoggerFactory
-			.getLogger(EmailInteractionChannel.class);
+	private Logger logger = LoggerFactory.getLogger(EmailInteractionChannel.class);
 
 	private EmailBuilder emailBuilder;
 	private HTMLEditor htmlEditor;
@@ -37,8 +37,8 @@ public class EmailInteractionChannel implements InteractionChannel {
 	@Deprecated
 	private Conexion emailConnection;
 
-	public EmailInteractionChannel(
-			EmailInteractionChannelConfiguration configuration) {
+	public EmailInteractionChannel(EmailInteractionChannelConfiguration configuration)
+	{
 		super();
 		this.configuration = configuration;
 		this.emailBuilder = new EmailBuilder();
@@ -49,17 +49,20 @@ public class EmailInteractionChannel implements InteractionChannel {
 		this.initializeEmailConnection();
 	}
 
-	private void initializeEmailConnection() {
+	private void initializeEmailConnection()
+	{
 		emailConnection = ConexionFactory.crear(configuration.getAccountData());
 	}
 
-	private void initializeEmailBuilder() {
+	private void initializeEmailBuilder()
+	{
 		emailBuilder.setFromAddress(configuration.getUserName());
 		emailBuilder.setFromName(configuration.getDisplayableName());
 		emailBuilder.setSubject(configuration.getNewsEmailSubject());
 	}
 
-	public void open() throws ChannelOpeningException {
+	public void open() throws ChannelOpeningException
+	{
 		try {
 			this.emailConnection.conectar();
 		} catch (UnknownHostException e) {
@@ -74,18 +77,18 @@ public class EmailInteractionChannel implements InteractionChannel {
 		}
 	}
 
-	public void sendNewsReport(ContactData contactData, NewsReport newsReport) {
+	public void sendNewsReport(ContactData contactData, NewsReport newsReport)
+	{
 		if (contactData.getChannelType().equals(this.getChannelType())) {
-			Email email = this.buildEmail((EmailContactData) contactData,
-					newsReport);
+			Email email = this.buildEmail((EmailContactData) contactData, newsReport);
 			this.getMailer().sendMail(email);
 		}
 	}
 
-	private Email buildEmail(EmailContactData contactData, NewsReport newsReport) {
+	private Email buildEmail(EmailContactData contactData, NewsReport newsReport)
+	{
 
-		Email email = emailBuilder.setRecipient(contactData.getContactName(),
-				contactData.getEmailAddress()).build();
+		Email email = emailBuilder.setRecipient(contactData.getContactName(), contactData.getEmailAddress()).build();
 
 		// do some magic and get the text according to the contact's
 		// interests! <- <b>NO!</b> this is informer's responsibility
@@ -96,39 +99,42 @@ public class EmailInteractionChannel implements InteractionChannel {
 			String mailText = this.htmlEditor.writeReport(newsReport);
 			email.setTextHTML(mailText);
 		} else {
-			String mailText = this.plainEditor
-					.writeReport(new URLShorteningReport(newsReport));
+			String mailText = this.plainEditor.writeReport(new URLShorteningReport(newsReport));
 			email.setText(mailText);
 		}
 
 		return email;
 	}
 
-	private Mailer getMailer() {
+	private Mailer getMailer()
+	{
 		// TODO why not instance variable? new mailers every time? (perhaps
 		// there was a reason for this)
-		return new Mailer(this.getSMTPHost(), this.getSMTPPort(),
-				this.getUserName(), this.getPassword(),
-				TransportStrategy.SMTP_TLS);
+		return new Mailer(this.getSMTPHost(), this.getSMTPPort(), this.getUserName(), this.getPassword(), TransportStrategy.SMTP_TLS);
 	}
 
-	public ChannelType getChannelType() {
+	public ChannelType getChannelType()
+	{
 		return ChannelType.EMAIL;
 	}
 
-	public String getPassword() {
+	public String getPassword()
+	{
 		return configuration.getPassword();
 	}
 
-	public String getUserName() {
+	public String getUserName()
+	{
 		return configuration.getUserName();
 	}
 
-	public int getSMTPPort() {
+	public int getSMTPPort()
+	{
 		return configuration.getSMTPPort();
 	}
 
-	public String getSMTPHost() {
+	public String getSMTPHost()
+	{
 		return configuration.getSMTPHost();
 	}
 }

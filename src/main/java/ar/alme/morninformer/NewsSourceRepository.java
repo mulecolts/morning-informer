@@ -6,30 +6,31 @@ import java.util.Map;
 import ar.alme.morninformer.feeds.RSSNewsSourceFactory;
 import ar.alme.morninformer.feeds.UnknownNewsSourceException;
 
-public class NewsSourceRepository {
+public class NewsSourceRepository
+{
 
 	private Map<NewsSourceDescription, NewsSource> cache = new HashMap<NewsSourceDescription, NewsSource>();
 
-	private boolean isTwitter(NewsSourceDescription description) {
+	private boolean isTwitter(NewsSourceDescription description)
+	{
 		return description.getType().equals(NewsSourceDescription.TYPE_TWITTER);
 	}
 
-	private boolean isRSS(NewsSourceDescription description) {
+	private boolean isRSS(NewsSourceDescription description)
+	{
 		return description.getType().equals(NewsSourceDescription.TYPE_RSS);
 
 	}
 
-	public NewsSource get(NewsSourceDescription description)
-			throws UnknownNewsSourceException {
+	public NewsSource get(NewsSourceDescription description) throws UnknownNewsSourceException
+	{
 		NewsSource newsSource = this.cache.get(description);
 
 		if (newsSource == null) {
 			if (this.isRSS(description)) {
-				newsSource = RSSNewsSourceFactory.instance().create(
-						description.getName());
+				newsSource = RSSNewsSourceFactory.instance().create(description.getName());
 			} else if (this.isTwitter(description)) {
-				newsSource = RSSNewsSourceFactory.instance().createTwitter(
-						description.getProperty("screenName"));
+				newsSource = RSSNewsSourceFactory.instance().createTwitter(description.getProperty("screenName"));
 			} else
 				throw new UnknownNewsSourceException(description.toString());
 			this.cache.put(description, newsSource);

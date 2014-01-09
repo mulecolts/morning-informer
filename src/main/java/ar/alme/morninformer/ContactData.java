@@ -2,7 +2,8 @@ package ar.alme.morninformer;
 
 import java.util.Properties;
 
-public interface ContactData {
+public interface ContactData
+{
 
 	ChannelType getChannelType();
 

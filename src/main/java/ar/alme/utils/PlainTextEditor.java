@@ -6,11 +6,13 @@ import java.util.List;
 import ar.alme.morninformer.news.NewsReport;
 import ar.alme.morninformer.news.PieceOfNews;
 
-public class PlainTextEditor {
+public class PlainTextEditor
+{
 
 	private static final String NEW_LINE = "\n";
 
-	public String writeReport(NewsReport report) {
+	public String writeReport(NewsReport report)
+	{
 		String text = "";
 
 		text += report.getTitle();
@@ -34,7 +36,8 @@ public class PlainTextEditor {
 		return text;
 	}
 
-	private DateFormat getDateFormat() {
+	private DateFormat getDateFormat()
+	{
 		return DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG);
 	}
 

@@ -21,7 +21,8 @@ import ar.mil.cideso.correo.configuracion.ProtocoloCorreo;
 import ar.mil.cideso.correo.configuracion.ProtocoloCorreoFactory;
 import ar.mil.cideso.correo.configuracion.ServidorCorreo;
 
-public class InformerMain {
+public class InformerMain
+{
 
 	private Logger logger = LoggerFactory.getLogger(InformerMain.class);
 
@@ -42,15 +43,18 @@ public class InformerMain {
 
 	private XMLUserLoader userLoader;
 
-	public void setUp() throws Exception {
+	public void setUp() throws Exception
+	{
 	}
 
-	public static void main(String[] args) throws Throwable {
+	public static void main(String[] args) throws Throwable
+	{
 		BasicConfigurator.configure();
 		new InformerMain().run();
 	}
 
-	public void run() {
+	public void run()
+	{
 		try {
 			Informer informer = new Informer();
 
@@ -68,12 +72,9 @@ public class InformerMain {
 			String domain = configuration.getString(KEY_DOMAIN);
 			String password = configuration.getString(KEY_PASSWORD);
 			String newsSubject = configuration.getString(KEY_NEWS_SUBJECT);
-			String displayableName = configuration
-					.getString(KEY_DISPLAYABLE_NAME);
-			String incomingServer = configuration
-					.getString(KEY_INCOMING_SERVER);
-			String outgoingServer = configuration
-					.getString(KEY_OUTGOING_SERVER);
+			String displayableName = configuration.getString(KEY_DISPLAYABLE_NAME);
+			String incomingServer = configuration.getString(KEY_INCOMING_SERVER);
+			String outgoingServer = configuration.getString(KEY_OUTGOING_SERVER);
 
 			logger.info("Configuration file loaded successfully");
 
@@ -81,12 +82,9 @@ public class InformerMain {
 			BitlyURLShortener.setInstance(new BitlyURLShortener(login, apiKey));
 
 			// Set up the valid news sources
-			RSSNewsSourceFactory.instance().learn(
-					NewsSourceDescription.RSS_LA_NACION_ULTIMAS, urlLn);
-			RSSNewsSourceFactory.instance().learn(
-					NewsSourceDescription.RSS_CLARIN, urlClarin);
-			RSSNewsSourceFactory.instance().learn(
-					NewsSourceDescription.TWITTER, urlTwitter);
+			RSSNewsSourceFactory.instance().learn(NewsSourceDescription.RSS_LA_NACION_ULTIMAS, urlLn);
+			RSSNewsSourceFactory.instance().learn(NewsSourceDescription.RSS_CLARIN, urlClarin);
+			RSSNewsSourceFactory.instance().learn(NewsSourceDescription.TWITTER, urlTwitter);
 
 			// Load users
 			userLoader = new XMLUserLoader();
@@ -95,17 +93,14 @@ public class InformerMain {
 			logger.info("User profiles loaded successfully");
 
 			// Set up the interaction channels (email only, for now)
-			EmailInteractionChannelConfiguration channelConfiguration = this
-					.getEmailConfiguration(username, domain, password,
-							newsSubject, displayableName, incomingServer,
-							outgoingServer);
+			EmailInteractionChannelConfiguration channelConfiguration = this.getEmailConfiguration(username, domain, password, newsSubject, displayableName, incomingServer,
+					outgoingServer);
 
 			// Tell the informer about the users and the interaction channels
 			for (UserProfile user : users) {
 				informer.addUserProfile(user);
 			}
-			informer.addInteractionChannel(new EmailInteractionChannel(
-					channelConfiguration));
+			informer.addInteractionChannel(new EmailInteractionChannel(channelConfiguration));
 
 			logger.info("Commencing...");
 			// Work!
@@ -117,33 +112,29 @@ public class InformerMain {
 		} catch (UserLoadException e) {
 			logger.error("Error loading user profiles", e);
 		} catch (UnknownNewsSourceException e) {
-			logger.error(
-					"An unknown news source was specified in the users profile file",
-					e);
+			logger.error("An unknown news source was specified in the users profile file", e);
 		}
 	}
 
-	private EmailInteractionChannelConfiguration getEmailConfiguration(
-			String user, String domain, String password, String newsSubject,
-			String displayableName, String incomingServer, String outgoingServer) {
-		ServidorCorreo accountData = new ServidorCorreo(user, domain, password,
-				this.getOutgoingProtocol(outgoingServer),
-				this.getIncomingProtocol(incomingServer));
-		EmailInteractionChannelConfiguration emailConfiguration = new EmailInteractionChannelConfiguration(
-				accountData, newsSubject);
+	private EmailInteractionChannelConfiguration getEmailConfiguration(String user, String domain, String password, String newsSubject, String displayableName,
+			String incomingServer, String outgoingServer)
+	{
+		ServidorCorreo accountData = new ServidorCorreo(user, domain, password, this.getOutgoingProtocol(outgoingServer), this.getIncomingProtocol(incomingServer));
+		EmailInteractionChannelConfiguration emailConfiguration = new EmailInteractionChannelConfiguration(accountData, newsSubject);
 		emailConfiguration.setDisplayableName(displayableName);
 
 		return emailConfiguration;
 	}
 
-	private ProtocoloCorreo getIncomingProtocol(String incomingServer) {
-		ProtocoloCorreoFactory factory = new ProtocoloCorreoFactory()
-				.setHabilitarSSL(true);
+	private ProtocoloCorreo getIncomingProtocol(String incomingServer)
+	{
+		ProtocoloCorreoFactory factory = new ProtocoloCorreoFactory().setHabilitarSSL(true);
 		ProtocoloCorreo proto = factory.crearIMAP(incomingServer);
 		return proto;
 	}
 
-	private ProtocoloCorreo getOutgoingProtocol(String outgoingServer) {
+	private ProtocoloCorreo getOutgoingProtocol(String outgoingServer)
+	{
 		return ProtocoloCorreoFactory.crearSMTPDefault(outgoingServer);
 	}
 }

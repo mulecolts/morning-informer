@@ -6,12 +6,14 @@ import java.util.List;
 import ar.alme.morninformer.news.NewsReport;
 import ar.alme.morninformer.news.PieceOfNews;
 
-public class HTMLEditor {
+public class HTMLEditor
+{
 
 	private static final String NEW_LINE = "<br/>";
 	private String text;
 
-	public String writeReport(NewsReport report) {
+	public String writeReport(NewsReport report)
+	{
 		text = "";
 
 		addBold(report.getTitle());
@@ -36,27 +38,33 @@ public class HTMLEditor {
 		return text;
 	}
 
-	private String getFormattedDate(NewsReport report) {
+	private String getFormattedDate(NewsReport report)
+	{
 		return this.getDateFormat().format(report.getDate());
 	}
 
-	private void addLink(String link, String text) {
+	private void addLink(String link, String text)
+	{
 		this.text += "<a href=" + link + ">" + text + "</a>";
 	}
 
-	private void addBold(String text) {
+	private void addBold(String text)
+	{
 		this.text += "<b>" + text + "</b>";
 	}
 
-	private void add(String text) {
+	private void add(String text)
+	{
 		this.text += text;
 	}
 
-	private void newLine() {
+	private void newLine()
+	{
 		text += NEW_LINE;
 	}
 
-	private DateFormat getDateFormat() {
+	private DateFormat getDateFormat()
+	{
 		return DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG);
 	}
 
